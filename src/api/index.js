@@ -11,6 +11,7 @@ const options = {
 
 export const fetchHomeData =async () =>  {
  options.params.q = "trending";
+//  options.params.cursor = cursor;
   const {data} = await axios.request(`https://youtube138.p.rapidapi.com/search/`,options);
   return data;
 }

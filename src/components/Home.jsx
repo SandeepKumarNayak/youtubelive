@@ -2,16 +2,30 @@ import React, { useState, useEffect, Suspense } from "react";
 import { fetchHomeData } from "../api";
 const Videos = React.lazy(() => import("./Videos"));
 import SideBar from "./SideBar";
-import { Stack } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 
 function Home() {
   const [videos, setVideos] = useState([]);
-  useEffect(() => {
-    fetchHomeData().then((data) => {
-      const { contents } = data;
-      setVideos(contents);
-    });
-  }, []);
+  // const [cursor, setCursor] = useState(null);
+
+  // const handleLoadMore = React.useCallback(() => {
+  //   fetchHomeData(cursor).then((data) => {
+  //     const { contents } = data;
+  //     setCursor(data?.cursorNext);
+  //     setVideos(prev => [...prev, ...contents]);
+  //   });
+  // }, [cursor]);
+
+ 
+
+ useEffect(()=>{
+  fetchHomeData().then((data) => {
+    const { contents } = data;
+    // setCursor(data?.cursorNext);
+    setVideos(prev => [...prev, ...contents]);
+  });
+ },[])
+
   return (
     <Stack direction="row">
       <SideBar />
@@ -20,6 +34,4 @@ function Home() {
       </Suspense>
     </Stack>
   );
-}
-
-export default Home;
+}export default Home;
