@@ -12,7 +12,7 @@ const Videos = ({videos}) => {
         videos  ? (videos.map((video,indx) => {
           return (
               <Grid key={indx} xl={3}  md={4} sm={6} xs={12}  item>
-                <VideoCard   key={indx} video = {video} />
+                <VideoCard   key={video?.videoId} video = {video} />
               </Grid>
           )
         }) ) :<Box sx={{display:'flex', width:'100%',height:'95vh', justifyContent:'center',alignItems:'center',fontSize:'20px'}}>Loading...</Box>

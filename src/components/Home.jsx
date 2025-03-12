@@ -21,7 +21,7 @@ function Home() {
  useEffect(()=>{
   fetchHomeData().then((data) => {
     const { contents } = data;
-    // setCursor(data?.cursorNext);
+
     setVideos(prev => [...prev, ...contents]);
   });
  },[])
@@ -29,7 +29,7 @@ function Home() {
   return (
     <Stack direction="row">
       <SideBar />
-      <Suspense fallback={<p style={{width:'500px',height:'500px',background:'black'}}>Loading...</p>}>
+      <Suspense fallback={<p style={{width:'500px',height:'500px',margin:'auto'}}>Loading...</p>}>
         <Videos videos={videos} />
       </Suspense>
     </Stack>

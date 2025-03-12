@@ -1,5 +1,5 @@
 import { Box, IconButton,Avatar, Input, InputAdornment, Stack, TextField, Typography } from "@mui/material";
-import React, {  useCallback, useState} from "react";
+import React, {  useCallback, useState, useEffect} from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import MicIcon from "@mui/icons-material/Mic";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import 'regenerator-runtime/runtime';
 import { autoComplete } from "../api";
 import { debounce } from "lodash";
+import SpeechRecognition from "react-speech-recognition";
+import { useSpeechRecognition } from "react-speech-recognition";
 
 
 function Navbar() {
@@ -99,8 +101,8 @@ function Navbar() {
 
 const SearchBar = () =>{
 
-  // const startListening =()=> SpeechRecognition.startListening({language:'en-IN' })
-  // const { transcript, browserSupportsSpeechRecognition} = useSpeechRecognition();
+  const startListening =()=> SpeechRecognition.startListening({language:'en-IN' })
+  const { transcript, browserSupportsSpeechRecognition} = useSpeechRecognition();
     const [searchValue, setSearchValue] = useState("");
     const [suggestions, setSuggestions] = useState([]);
     const [focused, setFocused] = useState(false);
@@ -132,13 +134,14 @@ const SearchBar = () =>{
 
      
 
-    // useEffect(()=>{
-    //   setSearchValue(transcript)
-    // },[transcript])
+    useEffect(()=>{
+      setSearchValue(transcript)
+      console.log(transcript);
+    },[transcript])
 
-    // if (!browserSupportsSpeechRecognition) {
-    //   return null
-    // }
+    if (!browserSupportsSpeechRecognition) {
+      return null
+    }
   
     
     return <Stack direction="row" spacing={1}>
@@ -196,23 +199,8 @@ const SearchBar = () =>{
       </datalist>
        
     </Box>
-    {/* <Box>
-      <input type="text" list="suggestion" onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            searchResult();
-          }
-        }} onChange={handleChange} value={searchValue} />
-        <datalist id="suggestion">
-        {
-          suggestions.map((d) =>(
-            <option key={d} value={d}>
-              {d}
-            </option>
-          ))
-        }
-      </datalist>
-    </Box> */}
-    <IconButton   sx={{ width: "40px",height:'40px',borderRadius:'50%' }}>
+   
+    <IconButton onClick={startListening}  sx={{ width: "40px",height:'40px',borderRadius:'50%' }}>
       <MicIcon fontSize="medium"   />
     </IconButton>
   </Stack>
