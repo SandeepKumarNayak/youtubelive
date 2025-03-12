@@ -14,17 +14,25 @@ import {
   import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { fetchVideoData } from "../api";
 import { WifiChannelOutlined } from "@mui/icons-material";
+import { useLocation } from "react-router-dom";
   
   function Player({ id }) {
     const [videoData, setVideoData] = useState(null);
+    const location = useLocation();
+    const video = location.state?.video;
     // const navigate = useNavigate();
     useEffect(() => {
-      fetchVideoData(id).then((data) => {
-        // console.log(data);
+      if(!video) {
+
+        fetchVideoData(id).then((data) => {
+          setVideoData(data);
+        });
+       
+      } else {
+        setVideoData(video?.video);
         
-        setVideoData(data);
-      });
-    }, [id]);
+      }
+    }, [id, video]);
     return (
       <Box sx={{ width: "100%" }}>
         <ReactPlayer
@@ -38,7 +46,7 @@ import { WifiChannelOutlined } from "@mui/icons-material";
           {videoData?.title}
         </Typography>
         <Box>
-          {videoData?.superTitle?.items?.map((keyword) => {
+          {/* {videoData?.superTitle?.items?.map((keyword) => {
             return (
               <Link
                 underline="none"
@@ -48,7 +56,14 @@ import { WifiChannelOutlined } from "@mui/icons-material";
                 {keyword} &nbsp;
               </Link>
             );
-          })}
+          })} */}
+          <Link
+                underline="none"
+                sx={{ cursor: "pointer" }}
+                to={`/${videoData?.descriptionSnippet}`}
+              >
+                 
+              </Link>
         </Box>
         <Box
           sx={{
@@ -60,8 +75,8 @@ import { WifiChannelOutlined } from "@mui/icons-material";
         >
           <Box sx={{ display: "flex", alignItems: "center",mr:'20px' }}>
             <Tooltip title={videoData?.author?.title}>
-              <Avatar />
-              {/* <CardMedia
+               
+              <CardMedia
                 component="img"
                 image={videoData?.author?.avatar[0]?.url}
                 alt="img"
@@ -72,7 +87,7 @@ import { WifiChannelOutlined } from "@mui/icons-material";
                   borderRadius: "50%",
                   cursor: "pointer",
                 }}
-              /> */}
+              />
             </Tooltip>
             <Box sx={{ marginRight: "20px" }}>
               <Typography
@@ -82,9 +97,9 @@ import { WifiChannelOutlined } from "@mui/icons-material";
               >
                 {videoData?.author?.title}
               </Typography>
-              <Typography variant="subtitle2">
+              {/* <Typography variant="subtitle2">
                 {videoData?.author?.stats?.subscribersText}
-              </Typography>
+              </Typography> */}
             </Box>
             <Box>
               <Button
@@ -104,7 +119,7 @@ import { WifiChannelOutlined } from "@mui/icons-material";
                 sx={{ background: "black", borderRadius: "20px" }}
                 startIcon={<ThumbUpIcon />}
               >
-                {videoData?.stats?.likes}
+                {videoData?.stats?.views}
               </Button>
               <Button
                 sx={{ background: "black", borderRadius: "20px" }}

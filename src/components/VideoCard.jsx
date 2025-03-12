@@ -20,7 +20,7 @@ function VideoCard({ video,sideVideo }) {
       <Card sx={{boxShadow:'none'  , display:'flex',flexDirection: sideVideo ? 'row': 'column',alignItems:'center'}}>
         <Box
           sx={{ cursor: "pointer",width:sideVideo?'auto':'100%' }}
-          onClick = {()=> navigate(`/watch/${video?.video?.videoId}`)}
+          onClick = {()=> navigate(`/watch/${video?.video?.videoId}`,{state:{video}})}
         >
           <CardMedia
             component="img"
@@ -46,6 +46,7 @@ function VideoCard({ video,sideVideo }) {
           underline="none"
           sx={{ cursor: "pointer" }}
           href={`/watch/${video?.video?.videoId}`}
+          state={video}
         >
           <Typography
             fontSize="small"
