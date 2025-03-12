@@ -1,5 +1,6 @@
 import { Box, IconButton,Avatar, Input, InputAdornment, Stack, TextField, Typography } from "@mui/material";
 import React, {  useCallback, useState, useEffect} from "react";
+import '../index.css';
 import MenuIcon from "@mui/icons-material/Menu";
 import MicIcon from "@mui/icons-material/Mic";
 import SearchIcon from "@mui/icons-material/Search";

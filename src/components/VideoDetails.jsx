@@ -22,10 +22,10 @@ function VideoDetails() {
   return (
     <Box sx={{position:'relative', top:'60px',background:'white'}}>
       <Stack container sx={{flexDirection:{xs:'column',sm:'column',md:'row'}}} gap={2} padding={2} >
-        <Grid  item>
+        <Grid sx={{width:{sx:'100%',sm:'100%', md:'65%'}}}  item>
             <Player id={id} />
         </Grid>
-        <Grid sm={4}  item>
+        <Grid    item>
            {
             videos && videos.map((video, indx) => {
               return (
