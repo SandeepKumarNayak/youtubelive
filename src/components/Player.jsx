@@ -89,7 +89,7 @@ import { useLocation } from "react-router-dom";
                 }}
               />
             </Tooltip>
-            <Box sx={{ marginRight: "20px" }}>
+            <Box sx={{ marginRight: "20px",fontSize:'12px' }}>
               <Typography
                 variant="h6"
                 fontWeight="bold"

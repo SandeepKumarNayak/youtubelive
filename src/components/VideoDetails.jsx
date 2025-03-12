@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Stack } from '@mui/material'
 import React, { useEffect,useState } from 'react'
  
 import { useParams } from 'react-router-dom'
@@ -21,11 +21,11 @@ function VideoDetails() {
     },[id])
   return (
     <Box sx={{position:'relative', top:'60px',background:'white'}}>
-      <Grid container sx={{justifyContent:'center'}} columnGap={6}>
-        <Grid sm={6} item>
+      <Stack container sx={{flexDirection:{xs:'column',sm:'column',md:'row'}}} gap={2} padding={2} >
+        <Grid  item>
             <Player id={id} />
         </Grid>
-        <Grid sm={4} item>
+        <Grid sm={4}  item>
            {
             videos && videos.map((video, indx) => {
               return (
@@ -35,7 +35,7 @@ function VideoDetails() {
             })
            }
         </Grid>
-      </Grid>
+      </Stack>
     </Box>
   )
 }

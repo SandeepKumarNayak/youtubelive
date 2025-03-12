@@ -23,6 +23,7 @@ function Navbar() {
         background: "white",
         zIndex:100,
         px: "10px",
+        py:{xs:'10px', sm:'10px', md:'0'},
         alignItems: "center",
         position:'fixed',
         width:'100%',
@@ -35,7 +36,7 @@ function Navbar() {
           <MenuIcon />
         </IconButton>
         <IconButton onClick={()=> navigate("/")} sx={{ "&:hover": { backgroundColor: "white" } }}>
-          <Box style={{ width: "6.5rem", display: "flex" }}>
+          <Box sx={{ width: "6.5rem", display: {xs:'none',sm:'none',md:'flex'}, }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="external-icon"
@@ -83,7 +84,7 @@ function Navbar() {
       <Box>
         <SearchBar />
       </Box>
-      <Stack spacing={1} direction="row">
+      <Stack sx={{display:{xs:'none',sm:'none', md:'flex'}}} spacing={1} direction="row">
             <IconButton sx={{ minWidth: "55px" }}>
               <VideoCallIcon fontSize="medium" />
             </IconButton>
@@ -149,7 +150,7 @@ const SearchBar = () =>{
         
       <TextField
         list="suggestion"
-        sx={{ width: focused ? "450px" : "400px" }}
+        sx={{ width:{ xs:focused ? "350px" : "300px",sm:focused ? "350px" : "300px",md:focused ? "450px" : "400px"} }}
         value={searchValue}
         onChange={handleChange}
         onKeyDown={(e) => {

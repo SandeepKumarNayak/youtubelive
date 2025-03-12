@@ -7,7 +7,7 @@ import VideoCard from './VideoCard'
 const Videos = ({videos}) => {
   
   return (
-    <Grid width="100%" rowSpacing={2} position="relative" top="10px" pt="20px" pr="20px" left="30px" columnSpacing={2}  container m={4}>
+    <Grid width="100%" rowSpacing={2} position="relative" top="10px" pt="20px" pr="20px" sx={{left:{xs:'0',sm:'30px'}}} columnSpacing={2}  container m={4}>
       {
         videos  ? (videos.map((video,indx) => {
           return (

@@ -7,7 +7,13 @@ import HomeIcon from "@mui/icons-material/Home";
 
 export default function SideBar() {
   return (
-    <Box  sx={{ width: "60px",position:'fixed',left:'0',top:'58px' }}  >
+    <Box sx={{ 
+      width: "60px",
+      position:'fixed',
+      left:'0',
+      top:'58px',
+      display: { xs: 'none', sm: 'block' }
+    }}>
       <Stack
         p={2}
         spacing={1}
@@ -86,4 +92,5 @@ export default function SideBar() {
       </Stack>
     </Box>
   )
+
 }
